@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hesam Salmabadi — Environmental Scientist &amp; Geospatial Data Scientist</title>
+  <meta name="description" content="Personal website of Hesam Salmabadi — PhD researcher in cryosphere remote sensing and geospatial data science at UQTR." />
+  <style>
+    /* ── Reset & base ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:      #1A3A5C;
+      --navy-mid:  #1A5276;
+      --navy-pale: #EBF2F8;
+      --accent:    #2471A3;
+      --gray:      #555;
+      --gray-light: #888;
+      --rule:      #D0DCE8;
+      --bg:        #FAFAFA;
+      --white:     #FFFFFF;
+      --text:      #222;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Liberation Sans", Arial, sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+    }
+    a { color: var(--navy-mid); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--accent); }
+
+    /* ── Layout ────────────────────────────────────────────── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── Navigation ─────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    }
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.55rem;
+      padding-bottom: 0.55rem;
+    }
+    nav .nav-name { color: #fff; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em; white-space: nowrap; }
+    nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.1rem; }
+    nav ul li a {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.82rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    nav ul li a:hover { background: rgba(255,255,255,0.15); color: #fff; text-decoration: none; }
+
+    /* ── Hero / Header ───────────────────────────────────────── */
+    #hero {
+      background: linear-gradient(135deg, var(--navy) 0%, #1B4F72 100%);
+      color: #fff;
+      padding: 4rem 0 3rem;
+    }
+    #hero h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 0.35rem; }
+    #hero .subtitle { font-size: 1.05rem; color: rgba(255,255,255,0.82); margin-bottom: 0.2rem; }
+    #hero .location { font-size: 0.9rem; color: rgba(255,255,255,0.65); margin-bottom: 1.5rem; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .hero-links a {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
+      font-size: 0.82rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      transition: background 0.15s;
+    }
+    .hero-links a:hover { background: rgba(255,255,255,0.22); text-decoration: none; }
+    .hero-links a svg { flex-shrink: 0; }
+
+    /* ── Sections ───────────────────────────────────────────── */
+    section { padding: 3rem 0; }
+    section:nth-child(even) { background: var(--white); }
+    h2.section-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--rule);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── About ───────────────────────────────────────────────── */
+    #about p { color: var(--gray); margin-bottom: 0.9rem; }
+    #about p:last-child { margin-bottom: 0; }
+    #about strong { color: var(--text); }
+
+    /* ── Experience / timeline ───────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 1.6rem; }
+    .tl-item { display: grid; grid-template-columns: auto 1fr; gap: 0 1.2rem; }
+    .tl-dot-col { display: flex; flex-direction: column; align-items: center; padding-top: 0.35rem; }
+    .tl-dot {
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--navy);
+      flex-shrink: 0;
+    }
+    .tl-line { flex: 1; width: 2px; background: var(--rule); margin-top: 4px; }
+    .tl-item:last-child .tl-line { display: none; }
+    .tl-body { padding-bottom: 0.4rem; }
+    .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.3rem; }
+    .tl-role { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+    .tl-dates { font-size: 0.8rem; color: var(--gray-light); white-space: nowrap; }
+    .tl-org { font-size: 0.85rem; color: var(--accent); margin-bottom: 0.35rem; }
+    .tl-loc { font-size: 0.78rem; color: var(--gray-light); margin-bottom: 0.4rem; }
+    .tl-body ul { padding-left: 1.1em; color: var(--gray); font-size: 0.875rem; }
+    .tl-body li { margin-bottom: 0.2rem; }
+
+    /* ── Publications ────────────────────────────────────────── */
+    .pub-metrics {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      background: var(--navy-pale);
+      border-left: 4px solid var(--navy);
+      padding: 0.8rem 1.1rem;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+    }
+    .pub-metric { color: var(--navy); }
+    .pub-metric strong { font-size: 1.05rem; }
+    .pub-metrics a { color: var(--navy-mid); font-size: 0.82rem; }
+    .pub-group { margin-bottom: 1.8rem; }
+    .pub-group-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--gray-light);
+      margin-bottom: 0.7rem;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .pub-item { font-size: 0.875rem; color: var(--gray); margin-bottom: 0.85rem; line-height: 1.55; }
+    .pub-item .pub-authors { color: var(--gray-light); font-size: 0.82rem; }
+    .pub-item .pub-venue { font-style: italic; }
+    .pub-item .pub-links { margin-top: 0.15rem; }
+    .pub-item .pub-links a {
+      font-size: 0.78rem;
+      display: inline-block;
+      background: var(--navy-pale);
+      color: var(--navy-mid);
+      padding: 0.1rem 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.35rem;
+    }
+    .pub-item .pub-links a:hover { background: var(--rule); text-decoration: none; }
+    .pub-item .pub-title { font-weight: 600; color: var(--text); }
+    .pub-me { font-weight: 700; color: var(--navy); }
+
+    /* ── Skills ─────────────────────────────────────────────── */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-card {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 0.9rem 1rem;
+    }
+    .skill-card h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--navy); margin-bottom: 0.5rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .tag {
+      font-size: 0.76rem;
+      background: var(--navy-pale);
+      color: var(--navy-mid);
+      border-radius: 3px;
+      padding: 0.15rem 0.5rem;
+    }
+    .tag.expert { background: #D4E6F1; color: #1A5276; font-weight: 600; }
+
+    /* ── Awards ─────────────────────────────────────────────── */
+    .award-list { display: flex; flex-direction: column; gap: 1rem; }
+    .award-item {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      padding: 0.9rem 1.1rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .award-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .award-body { }
+    .award-title { font-weight: 600; color: var(--navy); font-size: 0.9rem; }
+    .award-org { font-size: 0.8rem; color: var(--gray-light); margin-bottom: 0.25rem; }
+    .award-desc { font-size: 0.85rem; color: var(--gray); }
+
+    /* ── Education ───────────────────────────────────────────── */
+    .edu-list { display: flex; flex-direction: column; gap: 1.2rem; }
+    .edu-item {
+      border-left: 3px solid var(--navy);
+      padding-left: 1rem;
+    }
+    .edu-degree { font-weight: 600; color: var(--navy); font-size: 0.95rem; }
+    .edu-inst { font-size: 0.85rem; color: var(--accent); }
+    .edu-dates { font-size: 0.8rem; color: var(--gray-light); }
+    .edu-thesis { font-size: 0.85rem; color: var(--gray); margin-top: 0.2rem; font-style: italic; }
+    .edu-note { font-size: 0.82rem; color: var(--gray-light); }
+
+    /* ── CTA / Download ─────────────────────────────────────── */
+    .cta-block {
+      background: var(--navy);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .cta-block p { color: rgba(255,255,255,0.75); font-size: 0.9rem; margin-bottom: 1rem; }
+    .btn-cv {
+      display: inline-block;
+      background: #fff;
+      color: var(--navy);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 0.65rem 1.8rem;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .btn-cv:hover { background: var(--navy-pale); color: var(--navy); text-decoration: none; }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      background: #13293F;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      font-size: 0.78rem;
+      padding: 1.2rem;
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 640px) {
+      #hero h1 { font-size: 1.7rem; }
+      nav .nav-name { display: none; }
+      nav ul li a { font-size: 0.75rem; padding: 0.25rem 0.45rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────── -->
+<nav>
+  <div class="container">
+    <span class="nav-name">Hesam Salmabadi</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="container">
+    <h1>Hesam Salmabadi</h1>
+    <p class="subtitle">PhD Researcher &amp; Geospatial Data Scientist</p>
+    <p class="location">&#x1F4CD; Montreal, Quebec, Canada &nbsp;·&nbsp; UQTR &amp; Agriculture and Agri-Food Canada</p>
+    <div class="hero-links">
+      <a href="mailto:hesam.salmabadi@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+        Email
+      </a>
+      <a href="https://scholar.google.com/citations?user=QAvXX3cAAAAJ&hl=en" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zm0 12.27L3.5 10.5 12 5.73l8.5 4.77L12 15.27zM5 13.18v4l7 3.82 7-3.82v-4L12 17l-7-3.82z"/></svg>
+        Google Scholar
+      </a>
+      <a href="https://www.researchgate.net/profile/Hesam-Salmabadi" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a12.1 12.1 0 0 0-.368 2.596v.874h-4.09v3.308h4.09v10.047h3.495V9.023h2.98l.547-3.308h-3.527v-.786c0-.52.064-.92.193-1.2a1.06 1.06 0 0 1 .54-.588c.23-.113.563-.169 1-.169h1.793V.19a17.6 17.6 0 0 0-1.012-.142A18.1 18.1 0 0 0 19.586 0zM4.414 5.715a4.414 4.414 0 1 0 0 8.828 4.414 4.414 0 0 0 0-8.828zm0 2.297a2.117 2.117 0 1 1 0 4.234 2.117 2.117 0 0 1 0-4.234z"/></svg>
+        ResearchGate
+      </a>
+      <a href="https://www.linkedin.com/in/hesam-salmabadi/" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/hesam-salmabadi" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── About ───────────────────────────────────────────────── -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <p>Environmental scientist and geospatial data scientist with 9 peer-reviewed publications and a career built around one core instinct: take messy, large-scale data and extract findings that actually mean something. PhD research at UQTR (2021–2026) focuses on <strong>non-binary monitoring of seasonally frozen ground</strong> using passive microwave remote sensing — developing probabilistic frameworks that replace decades of oversimplified binary assumptions in cryosphere science.</p>
+    <p>The through-line across every project — from modelling dust transport over the Middle East to processing 40 years of Canadian freeze–thaw satellite records — is the same: get the raw data (however dirty, however large, whatever format), build a rigorous pipeline that handles the edge cases and the RAM crashes, apply the right statistical or machine learning tool for the job, and turn the result into something a scientist or a general audience can actually use.</p>
+    <p>Comfortable across the full technical stack: Python-based geospatial pipelines (xarray, dask, rasterio, geopandas), numerical atmospheric models (HYSPLIT), ML model development (from logistic regression to Bayesian hierarchical models), and terminal-level data engineering with GDAL and HDF/NetCDF formats at scale. Currently at <strong>Agriculture and Agri-Food Canada</strong> as a Geospatial Data Scientist, and building toward cloud deployment of geospatial ML models.</p>
+    <p><em>Science done carelessly is just noise. The goal is always rigour first, then clarity.</em></p>
+  </div>
+</section>
+
+<!-- ── Experience ─────────────────────────────────────────── -->
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">Geospatial Data Scientist — RAP Student</span>
+            <span class="tl-dates">May 2025 – Present</span>
+          </div>
+          <div class="tl-org">Agriculture and Agri-Food Canada (AAFC), Earth Observations, Science &amp; Technology Branch</div>
+          <div class="tl-loc">Ottawa, ON, Canada (Remote)</div>
+          <ul>
+            <li>Develop machine learning models to predict agricultural land use dynamics across Canada from multi-source geospatial data</li>
+            <li>Build reproducible Python pipelines for large-scale raster processing (xarray, dask, scikit-learn) from raw satellite ingestion to analysis</li>
+            <li>Perform data quality control, feature engineering, and model validation on heterogeneous satellite and ancillary datasets</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">PhD Researcher</span>
+            <span class="tl-dates">May 2021 – May 2026</span>
+          </div>
+          <div class="tl-org">Université du Québec à Trois-Rivières (UQTR) &amp; Centre d'Études Nordiques, Université Laval</div>
+          <div class="tl-loc">Trois-Rivières, QC, Canada</div>
+          <ul>
+            <li>Developed a non-binary soil freeze–thaw detection framework using SMAP (L-band) and AMSR2 passive microwave data; validated across 87 Canadian monitoring sites spanning boreal, prairie, and tundra ecozones</li>
+            <li>Recast the Soil Freezing Characteristic Curve (SFCC) into permittivity–temperature space, enabling robust soil state classification without moisture-specific calibration</li>
+            <li>Applied Bayesian hierarchical partial pooling and DBSCAN-based spatial block cross-validation for continental-scale model development</li>
+            <li>Investigated 23-year dust transport climatology from the Mesopotamian Marshes using HYSPLIT forward trajectories; characterised four primary pathways with regional air quality and climate implications</li>
+            <li>Funded by FRQNT Doctoral Research Scholarship ($75,000 CAD, 2023–2026) and UQTR Bourse Universalis Causa</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">Geospatial Data Analyst — Contributing Author</span>
+            <span class="tl-dates">Apr 2024 – Oct 2024</span>
+          </div>
+          <div class="tl-org">Environment and Climate Change Canada (ECCC)</div>
+          <div class="tl-loc">Toronto, ON, Canada (Remote)</div>
+          <ul>
+            <li>Contributing author, <em>Canada's Changing Climate Report 2026</em>, Chapter 6: Cryosphere Changes (forthcoming)</li>
+            <li>Processed four decades of satellite freeze–thaw records (HDF format); performed trend analysis and produced publication-quality maps of cryosphere change across Canada</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">Field Research Assistant</span>
+            <span class="tl-dates">Aug 2022</span>
+          </div>
+          <div class="tl-org">NASA Jet Propulsion Laboratory (JPL) — SMAPVEX22-Boreal Campaign</div>
+          <div class="tl-loc">Saskatchewan, Canada (On-site)</div>
+          <ul>
+            <li>Contributed to ground-based soil moisture and temperature measurements across the BERMS study area as part of a NASA SMAP satellite validation campaign; field data are part of Berg et al. (2025), <em>IEEE JSTARS</em></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">Geospatial Data Scientist</span>
+            <span class="tl-dates">Oct 2019 – Jan 2021</span>
+          </div>
+          <div class="tl-org">Research Institute of Cultural Heritage &amp; Tourism (RICHT)</div>
+          <div class="tl-loc">Tehran, Iran</div>
+          <ul>
+            <li>Investigated long-range atmospheric transport of salt and dust particles from Lake Urmia's desiccating playa using HYSPLIT forward trajectory modelling and long-term MODIS AOD time-series analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">GIS Data Analyst</span>
+            <span class="tl-dates">Feb 2017 – Dec 2017</span>
+          </div>
+          <div class="tl-org">Iran University of Science and Technology (IUST), Environmental Research Laboratory</div>
+          <div class="tl-loc">Tehran, Iran</div>
+          <ul>
+            <li>Produced spatial distribution maps of heavy metal (Hg) contamination in Musa Estuary using ArcGIS and IDW geostatistical interpolation</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Publications ───────────────────────────────────────── -->
+<section id="publications">
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+
+    <div class="pub-metrics">
+      <span class="pub-metric">14 publications &nbsp;·&nbsp; <strong>9</strong> first-authored</span>
+      <span class="pub-metric">Citations: <strong>181</strong></span>
+      <span class="pub-metric">h-index: <strong>6</strong></span>
+      <span class="pub-metric">i10-index: <strong>5</strong></span>
+      <span class="pub-metric"><a href="https://scholar.google.com/citations?user=QAvXX3cAAAAJ&hl=en" target="_blank" rel="noopener">↗ Google Scholar</a> &nbsp;|&nbsp; <a href="https://www.researchgate.net/profile/Hesam-Salmabadi" target="_blank" rel="noopener">↗ ResearchGate</a></span>
+    </div>
+
+    <!-- First-authored journals -->
+    <div class="pub-group">
+      <div class="pub-group-title">Journal Articles — First Author</div>
+
+      <div class="pub-item">
+        <div class="pub-title">In situ monitoring of seasonally frozen ground using soil freezing characteristic curve in permittivity–temperature space</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Pardo Lara R., Berg A., Mavrovic A., Hanes C., Montpetit B., Roy A.</div>
+        <div class="pub-venue"><em>The Cryosphere</em>, 20, 1635–1654, 2026</div>
+        <div class="pub-links"><a href="https://doi.org/10.5194/tc-20-1635-2026" target="_blank" rel="noopener">DOI</a> <span style="color:var(--accent);font-size:0.78rem;">Open Access</span></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Dust transport pathways from the Mesopotamian Marshes</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Saeedi M., Notaro M., Roy A.</div>
+        <div class="pub-venue"><em>Aeolian Research</em>, 73 (2025) 100975</div>
+        <div class="pub-links"><a href="https://doi.org/10.1016/j.aeolia.2025.100975" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Quantifying the contribution of Middle Eastern dust sources to PM₁₀ levels in Ahvaz, Southwest Iran</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Saeedi M., Roy A., Kaskaoutis D.G.</div>
+        <div class="pub-venue"><em>Atmospheric Research</em>, 295 (2023) 106993</div>
+        <div class="pub-links"><a href="https://doi.org/10.1016/j.atmosres.2023.106993" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Transport routes and potential source regions of the Middle Eastern dust over Ahvaz during 2005–2017</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Khalidy R., Saeedi M.</div>
+        <div class="pub-venue"><em>Atmospheric Research</em>, 241 (2020) 104947</div>
+        <div class="pub-links"><a href="https://doi.org/10.1016/j.atmosres.2020.104947" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Determination of the transport routes of and the areas potentially affected by SO₂ emanating from Khatoonabad Copper Smelter (KCS), Kerman province, Iran using HYSPLIT</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Saeedi M.</div>
+        <div class="pub-venue"><em>Atmospheric Pollution Research</em>, 10 (2019) 321–333</div>
+        <div class="pub-links"><a href="https://doi.org/10.1016/j.apr.2018.08.008" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Monitoring of SO₂ Column Concentration Over Iran Using Satellite-based Observations during 2005–2016</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Saeedi M.</div>
+        <div class="pub-venue"><em>Pollution</em>, 5(2): 257–268, 2019</div>
+        <div class="pub-links"><a href="https://doi.org/10.22059/poll.2018.260252.463" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+    </div>
+
+    <!-- Conference papers — first author -->
+    <div class="pub-group">
+      <div class="pub-group-title">Conference Papers — First Author</div>
+
+      <div class="pub-item">
+        <div class="pub-title">Capturing the Soil Zero-Curtain Effect from Multi-Frequency Passive Microwave Retrievals</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Berg A., Roy A.</div>
+        <div class="pub-venue"><em>ISPRS Congress 2026</em>, 2026</div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Areal fluctuations monitoring of Al-Azim/Al-Havizeh wetland during the 1986–2017 period, using time-series Landsat data</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Saeedi M.</div>
+        <div class="pub-venue"><em>IDEACONF 2018</em>, Tehran, Iran</div>
+      </div>
+    </div>
+
+    <!-- Preprints -->
+    <div class="pub-group">
+      <div class="pub-group-title">Preprints — First Author</div>
+
+      <div class="pub-item">
+        <div class="pub-title">Non-Binary Retrievals of Soil Freeze–Thaw Dynamics Using Multi-Frequency Passive Microwave Data</div>
+        <div class="pub-authors"><span class="pub-me">Salmabadi H.</span>, Berg A., Roy A.</div>
+        <div class="pub-venue"><em>SSRN Preprint</em>, 2026 — Under peer review</div>
+        <div class="pub-links"><a href="https://ssrn.com/abstract=6626104" target="_blank" rel="noopener">Preprint</a></div>
+      </div>
+    </div>
+
+    <!-- Co-authored -->
+    <div class="pub-group">
+      <div class="pub-group-title">Selected Co-Authored Papers</div>
+
+      <div class="pub-item">
+        <div class="pub-title">Soil Moisture Active/Passive Validation Experiment Within the Canadian Boreal Forest in 2022 (SMAPVEX22-Boreal)</div>
+        <div class="pub-authors">Berg A.A., Wicks K., Ambadan J.T., Roy A., …, <span class="pub-me">Salmabadi H.</span>, et al.</div>
+        <div class="pub-venue"><em>IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing</em>, Vol. 18, pp. 11816–, 2025</div>
+        <div class="pub-links"><a href="https://doi.org/10.1109/JSTARS.2025.3564195" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Freeze/Thaw Dynamics by GNSS-R: Climate Change Effects over the Arctic Boreal Zone</div>
+        <div class="pub-authors">Carreno-Luengo H., Ruf C.S., Bourgeau-Chavez L., Roy A., <span class="pub-me">Salmabadi H.</span>, et al.</div>
+        <div class="pub-venue"><em>IGARSS 2025</em>, Ann Arbor, MI, USA</div>
+        <div class="pub-links"><a href="https://doi.org/10.1109/IGARSS55050.2025.11243239" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+
+      <div class="pub-item">
+        <div class="pub-title">Novel GNSS-R Methods for Freeze/Thaw Surface State Retrieval</div>
+        <div class="pub-authors">Carreno-Luengo H., Ruf C.S., Gleason S., Russel A., Roy A., <span class="pub-me">Salmabadi H.</span></div>
+        <div class="pub-venue"><em>IGARSS 2024</em>, Ann Arbor, MI, USA</div>
+        <div class="pub-links"><a href="https://doi.org/10.1109/IGARSS53475.2024.10641037" target="_blank" rel="noopener">DOI</a></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Skills ─────────────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <h3>Programming &amp; Data</h3>
+        <div class="skill-tags">
+          <span class="tag expert">Python</span>
+          <span class="tag expert">xarray</span>
+          <span class="tag expert">dask</span>
+          <span class="tag">numpy · pandas</span>
+          <span class="tag">rasterio · geopandas</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">matplotlib · cartopy</span>
+          <span class="tag expert">GDAL / OGR</span>
+          <span class="tag">Bash</span>
+          <span class="tag">MATLAB</span>
+          <span class="tag">LaTeX</span>
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Machine Learning &amp; Statistics</h3>
+        <div class="skill-tags">
+          <span class="tag">Logistic regression (L1/L2)</span>
+          <span class="tag">Random forests · SVM</span>
+          <span class="tag">Gradient boosting</span>
+          <span class="tag expert">Bayesian hierarchical models</span>
+          <span class="tag">Probabilistic classification</span>
+          <span class="tag">DBSCAN spatial cross-validation</span>
+          <span class="tag">Mann-Kendall trend test</span>
+          <span class="tag">Kappa · F1 · RNMSE</span>
+          <span class="tag">Time-series analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Remote Sensing</h3>
+        <div class="skill-tags">
+          <span class="tag expert">SMAP (L-band)</span>
+          <span class="tag expert">AMSR2</span>
+          <span class="tag">SMOS</span>
+          <span class="tag">MODIS AOD / NDVI</span>
+          <span class="tag">Landsat LULC</span>
+          <span class="tag">OMI SO₂</span>
+          <span class="tag">ERA5 reanalysis</span>
+          <span class="tag">GDAS</span>
+          <span class="tag">Freeze–thaw retrieval</span>
+          <span class="tag">Source apportionment (PSCF)</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Modelling &amp; Atmospheric</h3>
+        <div class="skill-tags">
+          <span class="tag expert">HYSPLIT</span>
+          <span class="tag">Forward &amp; backward trajectories</span>
+          <span class="tag">Dust transport modelling</span>
+          <span class="tag">PSCF receptor model</span>
+          <span class="tag">Soil freeze–thaw modelling</span>
+          <span class="tag">SFCC permittivity–temperature framework</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>GIS &amp; Geospatial</h3>
+        <div class="skill-tags">
+          <span class="tag">QGIS</span>
+          <span class="tag">ArcGIS / ArcMap</span>
+          <span class="tag">PostGIS (learning)</span>
+          <span class="tag">Spatial interpolation (IDW, kriging)</span>
+          <span class="tag">Kernel density analysis</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <h3>Data Formats &amp; Cloud</h3>
+        <div class="skill-tags">
+          <span class="tag expert">NetCDF</span>
+          <span class="tag expert">HDF4 / HDF5</span>
+          <span class="tag">GeoTIFF</span>
+          <span class="tag">Zarr</span>
+          <span class="tag">CSV · Shapefile · GeoJSON</span>
+          <span class="tag">AWS (learning)</span>
+          <span class="tag">GitHub Actions</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Awards ─────────────────────────────────────────────── -->
+<section id="awards">
+  <div class="container">
+    <h2 class="section-title">Awards &amp; Funding</h2>
+    <div class="award-list">
+
+      <div class="award-item">
+        <div class="award-icon">🏆</div>
+        <div class="award-body">
+          <div class="award-title">FRQNT Doctoral Research Scholarship &nbsp;·&nbsp; $75,000 CAD</div>
+          <div class="award-org">Fonds de recherche du Québec – Nature et technologies &nbsp;·&nbsp; 2023–2026</div>
+          <div class="award-desc">Competitive provincial doctoral scholarship supporting research on passive microwave multi-sensor freeze/thaw monitoring over North America. One of the most prestigious doctoral funding sources in Quebec.</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div class="award-body">
+          <div class="award-title">Bourse Universalis Causa &nbsp;·&nbsp; Up to $21,000 CAD + tuition exemption</div>
+          <div class="award-org">Université du Québec à Trois-Rivières &nbsp;·&nbsp; 2021–2024</div>
+          <div class="award-desc">Merit-based doctoral scholarship with international tuition exemption, renewed annually on academic performance.</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🥇</div>
+        <div class="award-body">
+          <div class="award-title">First Ranked Student — MSc Program</div>
+          <div class="award-org">Iran University of Science and Technology (IUST) &nbsp;·&nbsp; 2018</div>
+          <div class="award-desc">Graduated as the top-ranked student in the MSc Civil Engineering (Environmental Engineering) program. GPA: 18.33/20.</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">📜</div>
+        <div class="award-body">
+          <div class="award-title">Full Tuition Scholarship — BSc &amp; MSc</div>
+          <div class="award-org">Ministry of Science, Research and Technology of Iran &nbsp;·&nbsp; 2010–2018</div>
+          <div class="award-desc">Awarded full tuition exemption at both the bachelor's and master's level based on top performance in Iran's national university entrance examination — a highly competitive, centralized exam taken annually by over one million candidates, in which final university placement and scholarship eligibility are determined by national ranking.</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🤖</div>
+        <div class="award-body">
+          <div class="award-title">AI for Earth Program — Scholarship Recipient</div>
+          <div class="award-org">Amii (Alberta Machine Intelligence Institute) &nbsp;·&nbsp; Jan 2026</div>
+          <div class="award-desc">Competitive award for early-career researchers applying machine intelligence to environmental and earth science problems.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Education ──────────────────────────────────────────── -->
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-list">
+
+      <div class="edu-item">
+        <div class="edu-degree">Doctor of Philosophy — Environmental Sciences</div>
+        <div class="edu-inst">Université du Québec à Trois-Rivières (UQTR) &amp; Centre d'Études Nordiques, Université Laval</div>
+        <div class="edu-dates">May 2021 – May 2026 &nbsp;·&nbsp; Trois-Rivières, QC, Canada</div>
+        <div class="edu-thesis">Thesis: Non-Binary Monitoring of Seasonally Frozen Ground: From In Situ Sensors to Continental Passive Microwave Retrievals</div>
+        <div class="edu-note">Supervisor: Prof. Alexandre Roy &nbsp;·&nbsp; FRQNT Doctoral Scholar</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Master of Science — Civil Engineering (Environmental Engineering)</div>
+        <div class="edu-inst">Iran University of Science and Technology (IUST)</div>
+        <div class="edu-dates">Sep 2015 – Jul 2018 &nbsp;·&nbsp; Tehran, Iran</div>
+        <div class="edu-thesis">Thesis: Determining the Effect of Wetland and Lake Desiccation in Iran on the Air Quality of Potentially Affected Regions</div>
+        <div class="edu-note">GPA: 18.33/20 — First Ranked Student &nbsp;·&nbsp; Supervisor: Prof. Mohsen Saeedi</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Bachelor of Science — Civil Engineering</div>
+        <div class="edu-inst">University of Birjand</div>
+        <div class="edu-dates">Sep 2010 – Sep 2014 &nbsp;·&nbsp; Birjand, South Khorasan, Iran</div>
+        <div class="edu-note">Full tuition scholarship via national competitive examination</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Download CV ────────────────────────────────────────── -->
+<div class="cta-block" id="contact">
+  <div class="container">
+    <p>Want the full details? Download the CV or get in touch.</p>
+    <a class="btn-cv" href="cv_hesam_salmabadi.pdf" target="_blank">Download CV (PDF)</a>
+    &nbsp;&nbsp;
+    <a class="btn-cv" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.4);" href="mailto:hesam.salmabadi@gmail.com">Get in Touch</a>
+  </div>
+</div>
+
+<!-- ── Footer ────────────────────────────────────────────── -->
+<footer>
+  <p>Hesam Salmabadi &nbsp;·&nbsp; Montreal, QC, Canada &nbsp;·&nbsp;
+    <a href="https://scholar.google.com/citations?user=QAvXX3cAAAAJ&hl=en" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5)">Google Scholar</a> &nbsp;·&nbsp;
+    <a href="https://github.com/hesam-salmabadi" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.5)">GitHub</a>
+  </p>
+</footer>
+
+</body>
+</html>
