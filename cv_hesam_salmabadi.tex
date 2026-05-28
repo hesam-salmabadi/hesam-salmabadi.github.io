@@ -1,0 +1,413 @@
+% ============================================================
+% Hesam Salmabadi — Curriculum Vitae
+% Compiled with: xelatex cv_hesam_salmabadi.tex
+% ATS-friendly: single column, no tables in header, clean headings
+%
+% CAREER TRACK INSTRUCTIONS:
+%   Track A (Academic/Postdoc): keep all sections as-is; lead with Summary A
+%   Track B (Geospatial Data Scientist): use Summary B; move Skills up
+%   Track C (ML/Data Engineer): use Summary C; emphasise pipeline work
+%   — Swap the \SUMMARY block and reorder \section{} as needed
+% ============================================================
+%!TEX TS-program = xelatex
+\documentclass[10pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage{geometry}
+\geometry{top=1.8cm, bottom=1.8cm, left=2cm, right=2cm}
+
+\usepackage{fontspec}
+\setmainfont{Arial}      % native macOS font, ATS-safe, widely readable
+
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+% --- Colours ---
+\definecolor{headingblue}{HTML}{1A3A5C}   % dark navy for section headings
+\definecolor{linkblue}{HTML}{1A5276}      % slightly lighter for URLs
+\definecolor{lightgray}{HTML}{666666}     % dates and secondary text
+
+% --- Hyperref setup ---
+\hypersetup{
+    colorlinks=true,
+    urlcolor=linkblue,
+    linkcolor=linkblue,
+    pdfauthor={Hesam Salmabadi},
+    pdftitle={Hesam Salmabadi — CV},
+}
+
+% --- Section formatting ---
+\titleformat{\section}
+  {\large\bfseries\color{headingblue}}
+  {}{0em}{}
+  [\vspace{-4pt}\textcolor{headingblue}{\rule{\linewidth}{0.6pt}}\vspace{2pt}]
+
+\titlespacing{\section}{0pt}{10pt}{4pt}
+
+% --- No page numbers ---
+\pagestyle{empty}
+
+% --- List spacing ---
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+\setlist[itemize,1]{label=\textbullet}
+
+% --- Custom commands ---
+\newcommand{\dategray}[1]{\textcolor{lightgray}{\small #1}}
+\newcommand{\jobtitle}[4]{%
+  \noindent\textbf{#1} \hfill \dategray{#3} \\
+  \textit{#2} \hfill \dategray{#4} \\[-4pt]
+}
+\newcommand{\publication}[1]{\noindent #1 \vspace{3pt}}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% --- HEADER ---
+\begin{center}
+  {\LARGE\bfseries\color{headingblue} Hesam Salmabadi}\\[4pt]
+  {\small
+    Montreal, QC, Canada \quad|\quad
+    \href{mailto:hesam.salmabadi@gmail.com}{hesam.salmabadi@gmail.com} \quad|\quad
+    +1 514 430 2051 \\[2pt]
+    \href{https://scholar.google.com/citations?user=QAvXX3cAAAAJ}{Google Scholar} \quad|\quad
+    \href{https://www.researchgate.net/profile/Hesam-Salmabadi}{ResearchGate} \quad|\quad
+    \href{https://github.com/hesam-salmabadi}{GitHub} \quad|\quad
+    \href{https://www.linkedin.com/in/hesam-salmabadi/}{LinkedIn}
+  }
+\end{center}
+
+\vspace{4pt}
+
+% ============================================================
+% OPTIONAL PROFILE (2–3 lines max — only add when explicitly required)
+% Uncomment the block that matches the target track.
+% A well-structured CV speaks for itself; this section is usually unnecessary.
+% ============================================================
+
+% --- Track A: Academic / Postdoc ---
+% \section{Profile}
+% Environmental scientist specialising in cryosphere remote sensing and
+% atmospheric dust transport. Nine first-authored publications; FRQNT doctoral
+% scholar (\$75,000 CAD). PhD at UQTR (2021–2026) on non-binary soil
+% freeze–thaw monitoring from passive microwave satellites.
+
+% --- Track B: Geospatial Data Scientist ---
+% \section{Profile}
+% Geospatial data scientist with nine peer-reviewed publications and extensive
+% experience in Python-based pipelines for continental-scale satellite datasets
+% (xarray, dask, rasterio). Currently at Agriculture and Agri-Food Canada
+% building national LULC modelling frameworks; contributing author,
+% Canada's Changing Climate Report 2026.
+
+% --- Track C: ML / Data Engineer ---
+% \section{Profile}
+% Data scientist with a research background in large-scale geospatial ML
+% pipelines. Experienced in model architecture trade-offs, spatial
+% cross-validation design, and HDF5/NetCDF data engineering at scale.
+% Currently at AAFC; working toward cloud deployment of geospatial models.
+
+% ============================================================
+\section{Experience}
+% ============================================================
+
+\jobtitle{Geospatial Data Scientist}
+         {Agriculture and Agri-Food Canada (AAFC), Earth Observations, Science \& Technology Branch}
+         {May 2025 – Present}
+         {Ottawa, ON, Canada (Remote)}
+\begin{itemize}
+  \item Assembled a national LULC data cube at 100\,m resolution from
+        multi-source satellite time series and environmental covariates
+        covering all of Canada south of 60°N; engineered out-of-core
+        ingestion and harmonisation pipelines (xarray, dask, Zarr)
+        to support continental-scale spatial analysis
+  \item Validated satellite-derived agricultural land estimates against
+        Statistics Canada Census data across all 10 southern provinces;
+        identified three distinct regimes of agricultural change ---
+        active conversion to urban land, gradual abandonment on marginal
+        land, and administrative flux --- with strong EO–Census agreement
+        (Pearson $r = 0.988$)
+  \item Developed Bayesian provincial demand forecasting models (PyMC)
+        for LULC trajectories, reporting posterior medians and 94\% HDI
+        to quantify projection uncertainty; translated posteriors into
+        five policy-relevant land-use demand scenarios
+  \item Built pixel-level logistic regression suitability classifiers
+        with geographic block cross-validation to prevent spatial leakage
+        across disjoint test regions
+        (ROC-AUC 0.957, Recall 0.81 on geographically held-out blocks)
+  \item Ran Dyna-CLUE with demand scenarios and pixel-level suitability
+        surfaces to generate spatially explicit LULC projection maps
+        across Canada
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{PhD Researcher}
+         {Université du Québec à Trois-Rivières (UQTR) \& Centre d'Études Nordiques, Université Laval}
+         {May 2021 – May 2026}
+         {Trois-Rivières, QC, Canada}
+\begin{itemize}
+  \item Recast the Soil Freezing Characteristic Curve (SFCC) into
+        permittivity–temperature space, eliminating moisture-specific
+        calibration; applied Bayesian hierarchical partial pooling across
+        87 in situ stations (10 networks, boreal, prairie, and tundra) —
+        mean R$^{2}$ = 0.95; demonstrated that the zero-curtain transitional
+        state persists $>$100 days in moisture-rich boreal sites, invisible
+        to standard binary classifiers
+  \item Developed a probabilistic non-binary freeze–thaw retrieval fusing
+        SMAP (L-band) and AMSR2 passive microwave observations into a
+        continuous Frozenness Index and 3-class state map at 9 km resolution
+        across the Northern Hemisphere (10-year record); built end-to-end
+        ingestion and continental-scale processing pipelines via Dask and
+        Zarr; validated against a three-product unanimous consensus ---
+        match rates 78.8--98.2\%, Cohen's Kappa 0.44--0.87, PR AUC $>$0.95
+        in three open biomes; applied DBSCAN clustering and
+        StratifiedGroupKFold to eliminate spatial autocorrelation leakage
+  \item Applied XGBoost with SHAP attribution over a 9-year continental
+        record; identified sub-canopy snowpack as the primary driver of
+        frozen ground duration in forested biomes --- a regime shift
+        invisible to temperature-only models (R$^{2}$ = 0.894,
+        MAE = 11.5 days); linked the Frozenness Index to AmeriFlux
+        ecosystem respiration via piecewise regression, confirming the
+        zero-curtain onset marks the metabolic shutdown tipping point for
+        cold-season carbon flux
+  \item Conducted field campaigns across remote Canadian ecosystems;
+        responsible for sensor installation, data logger servicing, and
+        in-field quality control across boreal, subarctic, and prairie terrain
+  \item Funded by FRQNT Doctoral Research Scholarship (\$75{,}000 CAD,
+        2023--2026), UQTR Bourse Universalis Causa (\$2{,}100 CAD), and
+        Canadian Space Agency Research Grant ($\sim$\$30{,}000 CAD via
+        supervisor)
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{Geospatial Data Analyst — Contributing Author}
+         {Environment and Climate Change Canada (ECCC)}
+         {Apr 2024 – Oct 2024}
+         {Toronto, ON, Canada (Remote)}
+\begin{itemize}
+  \item Developed a multi-decade satellite data pipeline processing 40+
+        years of daily freeze–thaw observations into structured xarray
+        spatial time series across Canada, underpinning the national-scale
+        cryosphere trend assessment
+  \item Quantified a reduction of 1.7 days/decade in frozen ground days
+        since 1979 and a 28\% increase in unfrozen days across the Canadian
+        Tundra (unfrozen season lengthened by $\sim$27 days); produced
+        publication-ready spatial trend maps for the federal climate assessment
+  \item Contributing author, \textit{Canada's Changing Climate Report 2026},
+        Chapter 6: Cryosphere Changes (forthcoming)
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{Field Research Technician}
+         {NASA Jet Propulsion Laboratory (JPL) — SMAPVEX22-Boreal Campaign}
+         {Aug 2022}
+         {Saskatchewan, Canada (On-site)}
+\begin{itemize}
+  \item Contributed to ground-based soil moisture and temperature measurements
+        across the BERMS study area as part of a NASA SMAP satellite validation
+        campaign; field data are part of Berg et al.\ (2025), \textit{IEEE JSTARS}
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{Environmental Remote Sensing Scientist}
+         {Research Institute of Cultural Heritage \& Tourism (RICHT)}
+         {Oct 2019 – Jan 2021}
+         {Tehran, Iran}
+\begin{itemize}
+  \item Designed an automated Lagrangian simulation pipeline (Python/PySPLIT)
+        executing forward trajectories over 18 years to map
+        altitude-dependent transport of salt and dust sediments from
+        Lake Urmia's desiccating playa
+  \item Engineered a multi-decadal satellite processing pipeline (MODIS AOD,
+        Landsat) to track lake desiccation and identify active saline dust
+        sources; established a strong correlation ($R = 0.86$) between
+        exposed lake bed area and regional aerosol events
+  \item Quantified a 76\% loss in lake surface area linked to agricultural
+        expansion; demonstrated that low-altitude dust transport drove a
+        30--60\% increase in dust hours for downwind cities
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{MSc Researcher}
+         {Iran University of Science and Technology (IUST)}
+         {Sep 2015 – Jul 2018}
+         {Tehran, Iran}
+\begin{itemize}
+  \item Investigated the air quality impact of wetland desiccation in the
+        Middle East; combined multi-decadal Landsat time-series for wetland
+        area monitoring with HYSPLIT forward trajectory modelling --- identified
+        four primary dust transport pathways from the Mesopotamian Marshes,
+        with regional implications for air quality from the Persian Gulf to
+        Central Asia
+  \item Monitored national SO$_2$ column concentrations over Iran
+        (2005--2016) using Aura/OMI satellite retrievals; characterised
+        seasonal transport corridors from an industrial point source via
+        HYSPLIT forward trajectories
+  \item Contributed geospatial analysis to a collaborative environmental
+        study on heavy metal (Hg) distribution in Musa Estuary; produced
+        spatial contamination maps using ArcGIS and geostatistical
+        interpolation
+  \item Produced 5 peer-reviewed publications (2019--2025); graduated as
+        top-ranked MSc student (GPA 18.33/20, national scholarship)
+\end{itemize}
+
+% ============================================================
+\section{Education}
+% ============================================================
+
+\jobtitle{Doctor of Philosophy — Environmental Sciences}
+         {Université du Québec à Trois-Rivières (UQTR)}
+         {May 2021 – May 2026}
+         {Trois-Rivières, QC, Canada}
+
+\noindent\textit{Thesis:} Non-Binary Monitoring of Seasonally Frozen Ground:
+From In Situ Sensors to Continental Passive Microwave Retrievals\\
+\textit{Supervisor:} Prof.\ Alexandre Roy
+
+\vspace{6pt}
+
+\jobtitle{MSc — Civil Engineering (Environmental Engineering)}
+         {Iran University of Science and Technology (IUST)}
+         {Sep 2015 – Jul 2018}
+         {Tehran, Iran}
+
+\noindent\textit{Thesis:} Determining the Effect of Wetland and Lake
+Desiccation in Iran on the Air Quality of Potentially Affected Regions\\
+\textit{GPA:} 18.33/20 — First Ranked Student \quad
+\textit{Supervisor:} Prof.\ Mohsen Saeedi
+
+\vspace{6pt}
+
+\jobtitle{BSc — Civil Engineering}
+         {University of Birjand}
+         {Sep 2010 – Sep 2014}
+         {Birjand, Iran}
+
+% ============================================================
+\section{Selected Publications}
+% ============================================================
+
+\noindent\textcolor{lightgray}{\small
+  14 publications total (9 first-authored) \,|\,
+  Citations: 181 \,|\, h-index: 6 \,|\, i10-index: 5 \quad
+  \href{https://scholar.google.com/citations?user=QAvXX3cAAAAJ}{[Google Scholar]}
+}
+
+\vspace{4pt}
+
+% --- Swap / reorder entries to match the target role ---
+
+\publication{\textbf{Salmabadi H.}, Pardo Lara R., Berg A., Mavrovic A., Hanes C., Montpetit B., Roy A. (2026).
+In situ monitoring of seasonally frozen ground using soil freezing characteristic curve in permittivity–temperature space.
+\textit{The Cryosphere}, 20, 1635–1654.
+\href{https://doi.org/10.5194/tc-20-1635-2026}{doi:10.5194/tc-20-1635-2026}}
+
+\publication{\textbf{Salmabadi H.}, Berg A., Roy A. (2026, preprint).
+Non-Binary Retrievals of Soil Freeze–Thaw Dynamics Using Multi-Frequency Passive Microwave Data.
+\textit{SSRN}. Under review.
+\href{https://ssrn.com/abstract=6626104}{ssrn.com/abstract=6626104}}
+
+\publication{\textbf{Salmabadi H.}, Saeedi M., Notaro M., Roy A. (2025).
+Dust transport pathways from the Mesopotamian Marshes.
+\textit{Aeolian Research}, 73, 100975.
+\href{https://doi.org/10.1016/j.aeolia.2025.100975}{doi:10.1016/j.aeolia.2025.100975}}
+
+\publication{\textbf{Salmabadi H.}, Saeedi M., Roy A., Kaskaoutis D.G. (2023).
+Quantifying the contribution of Middle Eastern dust sources to PM\textsubscript{10}
+levels in Ahvaz, Southwest Iran.
+\textit{Atmospheric Research}, 295, 106993.
+\href{https://doi.org/10.1016/j.atmosres.2023.106993}{doi:10.1016/j.atmosres.2023.106993}}
+
+\publication{\textbf{Salmabadi H.}, Roy A., Berg A. (2026).
+Capturing the Soil Zero-Curtain Effect from Multi-Frequency Passive Microwave Retrievals.
+\textit{ISPRS Congress 2026}.}
+
+\publication{Berg A.A., \ldots, \textbf{Salmabadi H.}, \ldots (2025).
+Soil Moisture Active/Passive Validation Experiment Within the Canadian Boreal Forest in 2022 (SMAPVEX22-Boreal).
+\textit{IEEE J. Sel. Topics Appl. Earth Obs. Remote Sens.}, 18, 11816–.
+\href{https://doi.org/10.1109/JSTARS.2025.3564195}{doi:10.1109/JSTARS.2025.3564195}}
+
+% ============================================================
+\section{Skills}
+% ============================================================
+
+\noindent\textbf{Programming \& Data:} Python (xarray, dask, numpy, pandas,
+rasterio, geopandas, scikit-learn, matplotlib, cartopy, h5py), GDAL (Python
+\& CLI), Bash, MATLAB, LaTeX, Git/GitHub, MySQL
+
+\vspace{3pt}
+\noindent\textbf{Machine Learning \& Statistics:} Logistic regression (L1/L2),
+random forests, SVM, DBSCAN, Bayesian hierarchical partial pooling,
+probabilistic classification, Mann-Kendall trend test, spatial cross-validation
+
+\vspace{3pt}
+\noindent\textbf{Remote Sensing:} SMAP (L-band), AMSR2, MODIS AOD,
+Landsat time-series, OMI SO\textsubscript{2}, ERA5, GDAS;
+passive microwave freeze–thaw retrieval; source apportionment (PSCF)
+
+\vspace{3pt}
+\noindent\textbf{Modelling:} HYSPLIT trajectory modelling (forward \&
+backward); numerical atmospheric transport; soil freeze–thaw modelling
+
+\vspace{3pt}
+\noindent\textbf{Data Formats:} NetCDF, HDF4/5, GeoTIFF, Zarr, Shapefile
+
+\vspace{3pt}
+\noindent\textbf{GIS:} QGIS, ArcGIS/ArcMap, PostGIS (learning), spatial
+interpolation (IDW, kriging concepts)
+
+\vspace{3pt}
+\noindent\textbf{Cloud \& Infra:} AWS (in progress), GitHub Actions basics,
+agentic AI tooling
+
+% ============================================================
+\section{Awards \& Funding}
+% ============================================================
+
+\noindent\textbf{FRQNT Doctoral Research Scholarship} \hfill \dategray{2023–2026}\\
+Fonds de recherche du Québec – Nature et technologies \quad \$75,000 CAD\\
+Project: \textit{Development of a New Passive Microwave Multi-Sensor Freeze/Thaw
+Data Product to Improve Growing Season Length Monitoring over North America}
+
+\vspace{4pt}
+\noindent\textbf{Bourse Universalis Causa} \hfill \dategray{2021–2024}\\
+Université du Québec à Trois-Rivières \quad Up to \$21,000 CAD + tuition exemption
+
+\vspace{4pt}
+\noindent\textbf{First Ranked Student — MSc Program} \hfill \dategray{2018}\\
+Iran University of Science and Technology (IUST) \quad GPA: 18.33/20
+
+\vspace{4pt}
+\noindent\textbf{Full Tuition Scholarship — BSc \& MSc} \hfill \dategray{2010–2018}\\
+Ministry of Science, Research and Technology of Iran — awarded on national
+competitive examination ranking
+
+% ============================================================
+\section{Certificates \& Professional Development}
+% ============================================================
+
+\begin{itemize}
+  \item AI for Earth Program — Amii (Alberta Machine Intelligence Institute), 2026
+  \item Advanced Learning Algorithms — DeepLearning.AI / Coursera, 2025
+  \item Supervised Machine Learning: Regression and Classification — DeepLearning.AI / Coursera, 2025
+  \item Google Data Analytics Certificate (Foundations, Python, Data Exploration) — Google / Coursera, 2022–2025
+  \item Advanced Python Programming — Maktabkhooneh, 2020
+\end{itemize}
+
+% ============================================================
+\section{Languages}
+% ============================================================
+
+Persian (Native) \quad|\quad English (Fluent)
+
+% ============================================================
+\end{document}

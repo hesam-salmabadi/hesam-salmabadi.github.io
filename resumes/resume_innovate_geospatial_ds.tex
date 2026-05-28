@@ -1,0 +1,298 @@
+% ============================================================
+% Hesam Salmabadi — Resume
+% Target: Geospatial Data Scientist, Innovate! Inc. / USGS EROS
+% Compiled with: xelatex resume_innovate_geospatial_ds.tex
+% ============================================================
+
+\documentclass[10pt, a4paper]{article}
+
+% --- Packages ---
+\usepackage{geometry}
+\geometry{top=1.6cm, bottom=1.6cm, left=2cm, right=2cm}
+
+\usepackage{fontspec}
+\setmainfont{Liberation Sans}
+
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+% --- Colours ---
+\definecolor{headingblue}{HTML}{1A3A5C}
+\definecolor{linkblue}{HTML}{1A5276}
+\definecolor{lightgray}{HTML}{666666}
+
+% --- Hyperref ---
+\hypersetup{
+    colorlinks=true,
+    urlcolor=linkblue,
+    linkcolor=linkblue,
+    pdfauthor={Hesam Salmabadi},
+    pdftitle={Hesam Salmabadi — Resume},
+}
+
+% --- Section formatting ---
+\titleformat{\section}
+  {\large\bfseries\color{headingblue}}
+  {}{0em}{}
+  [\vspace{-4pt}\textcolor{headingblue}{\rule{\linewidth}{0.6pt}}\vspace{2pt}]
+
+\titlespacing{\section}{0pt}{10pt}{4pt}
+
+\pagestyle{empty}
+
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+\setlist[itemize,1]{label=\textbullet}
+
+% --- Custom commands ---
+\newcommand{\dategray}[1]{\textcolor{lightgray}{\small #1}}
+\newcommand{\jobtitle}[4]{%
+  \noindent\textbf{#1} \hfill \dategray{#3} \\
+  \textit{#2} \hfill \dategray{#4} \\[-4pt]
+}
+\newcommand{\publication}[1]{\noindent #1 \vspace{3pt}}
+
+% ============================================================
+\begin{document}
+% ============================================================
+
+% --- HEADER ---
+\begin{center}
+  {\LARGE\bfseries\color{headingblue} Hesam Salmabadi}\\[4pt]
+  {\small
+    Montreal, QC, Canada \quad|\quad
+    \href{mailto:hesam.salmabadi@gmail.com}{hesam.salmabadi@gmail.com} \quad|\quad
+    +1 514 430 2051 \\[2pt]
+    \href{https://hesam-salmabadi.github.io}{hesam-salmabadi.github.io} \quad|\quad
+    \href{https://github.com/hesam-salmabadi}{GitHub} \quad|\quad
+    \href{https://www.linkedin.com/in/hesam-salmabadi/}{LinkedIn} \quad|\quad
+    \href{https://scholar.google.com/citations?user=QAvXX3cAAAAJ}{Google Scholar}
+  }
+\end{center}
+
+\vspace{2pt}
+
+% ============================================================
+\section{Profile}
+% ============================================================
+
+Geospatial data scientist with nine peer-reviewed publications and direct experience
+designing national-scale land use/land cover (LULC) modeling and projection
+frameworks. Currently at Agriculture and Agri-Food Canada building ML-based
+suitability models and Bayesian demand forecasting pipelines for continental-scale
+satellite datasets. Proficient in Python geospatial stack (xarray, dask, GDAL,
+scikit-learn), spatial cross-validation, and multi-source satellite data integration.
+Contributing author, \textit{Canada's Changing Climate Report 2026}.
+
+% ============================================================
+\section{Skills}
+% ============================================================
+
+\noindent\textbf{Programming \& Data Engineering:} Python (xarray, dask, numpy,
+pandas, rasterio, geopandas, scikit-learn, PyMC, matplotlib, cartopy, h5py),
+GDAL/OGR (Python \& CLI), Bash, Git/GitHub, LaTeX, MATLAB
+
+\vspace{3pt}
+\noindent\textbf{Machine Learning \& Statistics:} Logistic regression (L1/L2),
+random forests, XGBoost, SVM, Bayesian hierarchical modelling (PyMC / NUTS),
+spatial block cross-validation, imbalanced classification, Monte Carlo uncertainty
+propagation, Mann-Kendall trend analysis
+
+\vspace{3pt}
+\noindent\textbf{Remote Sensing \& Earth Observation:} Passive microwave (SMAP,
+AMSR2), multispectral satellite time-series (Landsat, MODIS), atmospheric transport
+modelling (HYSPLIT), ERA5 climate reanalysis, multi-sensor data fusion
+
+\vspace{3pt}
+\noindent\textbf{GIS \& Spatial Analysis:} QGIS, ArcGIS/ArcMap, ArcPy, geostatistical
+interpolation (IDW, kriging), kernel density estimation
+
+\vspace{3pt}
+\noindent\textbf{Data Formats:} Zarr, NetCDF, HDF4/5, GeoTIFF, GRIB, Parquet,
+Shapefile --- national-scale out-of-core processing pipelines
+
+% ============================================================
+\section{Experience}
+% ============================================================
+
+\jobtitle{Geospatial Data Scientist}
+         {Agriculture and Agri-Food Canada (AAFC), Science \& Technology Branch}
+         {May 2025 -- Present}
+         {Ottawa, ON, Canada (Remote)}
+\begin{itemize}
+  \item Designed and implemented a national-scale LULC modeling and projection
+        framework for Canada (5 classes: Agriculture, Urban, Natural Vegetation,
+        Wetland, Water) at 100\,m resolution, integrating multi-temporal satellite
+        time series and 16+ environmental covariates --- scope and objectives
+        directly parallel to USGS EROS land cover modeling projects
+  \item Developed binary logistic regression classifiers for agricultural, urban,
+        and natural vegetation suitability mapping using quadratic feature
+        expansion; implemented 75$\times$75\,km spatial blocking cross-validation
+        (Stratified Group K-Fold) to prevent data leakage in spatially
+        autocorrelated satellite datasets (ROC-AUC 0.957, Recall 0.81 on
+        geographically held-out blocks)
+  \item Built Bayesian demand forecasting models (PyMC, NUTS sampler) for
+        provincial LULC trajectories across three independent data sources
+        (satellite, administrative, census); reported posterior medians and
+        94\% HDI to quantify projection uncertainty
+  \item Engineered out-of-core national raster pipelines (Python: xarray, dask,
+        rasterio, GDAL) ingesting and harmonising multi-temporal LULC time series
+        into a cloud-optimised Zarr database (\textit{canada\_lulc\_100m\_v4.zarr})
+        covering all of Canada south of 60°N
+  \item Cross-validated satellite-derived LULC estimates against Statistics Canada
+        Census across all 10 southern provinces; diagnosed three distinct
+        divergence regimes with physical explanations (Pearson $r = 0.988$,
+        normalised by province land area)
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{PhD Researcher}
+         {Université du Québec à Trois-Rivières (UQTR) \& Centre d'Études Nordiques, Université Laval}
+         {May 2021 -- May 2026}
+         {Trois-Rivières, QC, Canada}
+\begin{itemize}
+  \item Developed a non-binary soil freeze–thaw detection framework using
+        multi-frequency passive microwave satellite data; validated across
+        87 monitoring sites spanning boreal, prairie, and tundra ecozones
+        (match rates 78.8–98.2\%, Kappa 0.44–0.87)
+  \item Designed and trained probabilistic spatial classifiers (logistic
+        regression, Bayesian hierarchical models) with rigorous spatial
+        block cross-validation and imbalanced-class evaluation (PRAUC, EER)
+  \item Processed and analysed multi-year satellite archives (SMAP, AMSR2,
+        ERA5) using Python (xarray, dask, Zarr, HDF5/NetCDF) at continental
+        scale; built batch-and-append pipelines and ML-ready Parquet exports
+  \item Funded by FRQNT Doctoral Research Scholarship (\$75,000 CAD,
+        2023–2026) and UQTR Bourse Universalis Causa
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{Geospatial Data Analyst --- Contributing Author}
+         {Environment and Climate Change Canada (ECCC)}
+         {Apr 2024 -- Oct 2024}
+         {Remote}
+\begin{itemize}
+  \item Contributing author, \textit{Canada's Changing Climate Report 2026},
+        Chapter 6: Cryosphere Changes --- delivered geospatial analysis and
+        publication-quality maps for a national federal assessment report
+  \item Built a parallel ETL pipeline (ProcessPoolExecutor) to ingest and
+        process 40+ years of NSIDC satellite freeze–thaw records (HDF5);
+        applied ArcPy automation for cartographic delivery
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{Environmental Remote Sensing Scientist}
+         {Research Institute of Cultural Heritage \& Tourism (RICHT)}
+         {Oct 2019 -- Jan 2021}
+         {Tehran, Iran}
+\begin{itemize}
+  \item Investigated long-range atmospheric transport of dust from Lake
+        Urmia's desiccating playa using HYSPLIT forward trajectories and
+        multi-decadal MODIS/Landsat satellite time-series analysis
+\end{itemize}
+
+\vspace{6pt}
+
+\jobtitle{Field Research Technician}
+         {NASA Jet Propulsion Laboratory (JPL) --- SMAPVEX22-Boreal Campaign}
+         {Aug 2022}
+         {Saskatchewan, Canada}
+\begin{itemize}
+  \item Contributed soil sampling, sensor deployment, and LiDAR data
+        collection across 37 sites in support of SMAP satellite soil moisture
+        validation; field data published in Berg et al.\ (2025),
+        \textit{IEEE JSTARS}
+\end{itemize}
+
+% ============================================================
+\section{Education}
+% ============================================================
+
+\jobtitle{Doctor of Philosophy --- Environmental Sciences}
+         {Université du Québec à Trois-Rivières (UQTR)}
+         {May 2021 -- May 2026}
+         {Trois-Rivières, QC, Canada}
+
+\noindent\textit{Thesis:} Non-Binary Monitoring of Seasonally Frozen Ground:
+From In Situ Sensors to Continental Passive Microwave Retrievals \quad
+\textit{Supervisor:} Prof.\ Alexandre Roy
+
+\vspace{6pt}
+
+\jobtitle{MSc --- Civil Engineering (Environmental Engineering)}
+         {Iran University of Science and Technology (IUST)}
+         {Sep 2015 -- Jul 2018}
+         {Tehran, Iran}
+
+\noindent\textit{GPA:} 18.33/20 \quad First Ranked Student \quad
+\textit{Thesis:} Determining the Effect of Wetland and Lake Desiccation in Iran
+on the Air Quality of Potentially Affected Regions
+
+\vspace{6pt}
+
+\jobtitle{BSc --- Civil Engineering}
+         {University of Birjand}
+         {Sep 2010 -- Sep 2014}
+         {Birjand, Iran}
+
+% ============================================================
+\section{Selected Publications}
+% ============================================================
+
+\noindent\textcolor{lightgray}{\small
+  14 publications total (9 first-authored) \,|\,
+  Citations: 181 \,|\, h-index: 6 \,|\, i10-index: 5 \quad
+  \href{https://scholar.google.com/citations?user=QAvXX3cAAAAJ}{[Google Scholar]}
+}
+
+\vspace{4pt}
+
+\publication{\textbf{Salmabadi H.}, Berg A., Roy A. (2026, preprint).
+Non-Binary Retrievals of Soil Freeze–Thaw Dynamics Using Multi-Frequency
+Passive Microwave Data. \textit{SSRN}, under review.
+\href{https://ssrn.com/abstract=6626104}{ssrn.com/abstract=6626104}}
+
+\publication{\textbf{Salmabadi H.}, Pardo Lara R., Berg A., et al.\ (2026).
+In situ monitoring of seasonally frozen ground using soil freezing characteristic
+curve in permittivity–temperature space. \textit{The Cryosphere}, 20, 1635–1654.
+\href{https://doi.org/10.5194/tc-20-1635-2026}{doi:10.5194/tc-20-1635-2026}}
+
+\publication{\textbf{Salmabadi H.}, Saeedi M., Notaro M., Roy A. (2025).
+Dust transport pathways from the Mesopotamian Marshes.
+\textit{Aeolian Research}, 73, 100975.
+\href{https://doi.org/10.1016/j.aeolia.2025.100975}{doi:10.1016/j.aeolia.2025.100975}}
+
+\publication{Berg A.A., \ldots, \textbf{Salmabadi H.}, \ldots\ (2025).
+Soil Moisture Active/Passive Validation Experiment Within the Canadian Boreal
+Forest (SMAPVEX22-Boreal). \textit{IEEE J. Sel. Topics Appl. Earth Obs.
+Remote Sens.}, 18.
+\href{https://doi.org/10.1109/JSTARS.2025.3564195}{doi:10.1109/JSTARS.2025.3564195}}
+
+% ============================================================
+\section{Awards \& Funding}
+% ============================================================
+
+\noindent\textbf{FRQNT Doctoral Research Scholarship} \hfill \dategray{2023--2026}\\
+Fonds de recherche du Québec – Nature et technologies \quad \$75,000 CAD
+
+\vspace{4pt}
+\noindent\textbf{First Ranked Student --- MSc Program} \hfill \dategray{2018}\\
+Iran University of Science and Technology \quad GPA: 18.33/20
+
+\vspace{4pt}
+\noindent\textbf{Full Tuition Scholarship (BSc \& MSc)} \hfill \dategray{2010--2018}\\
+Ministry of Science, Research and Technology of Iran --- national competitive examination
+
+% ============================================================
+\section{Languages}
+% ============================================================
+
+Persian (Native) \quad|\quad English (Fluent) \quad|\quad French (Functional)
+
+% ============================================================
+\end{document}

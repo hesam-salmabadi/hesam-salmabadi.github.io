@@ -166,20 +166,28 @@
     @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
     .skill-card {
       background: var(--white);
-      border: 1px solid var(--rule);
-      border-radius: 6px;
-      padding: 0.9rem 1rem;
+      border: 0.5px solid var(--rule);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
     }
-    .skill-card h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--navy); margin-bottom: 0.5rem; }
-    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .skill-card--full { grid-column: 1 / -1; }
+    .skill-card h3 { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray-light); margin-bottom: 0.65rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
     .tag {
-      font-size: 0.76rem;
-      background: var(--navy-pale);
-      color: var(--navy-mid);
-      border-radius: 3px;
-      padding: 0.15rem 0.5rem;
+      font-size: 0.77rem;
+      background: #F4F6F8;
+      color: var(--gray);
+      border: 0.5px solid var(--rule);
+      border-radius: 4px;
+      padding: 0.18rem 0.55rem;
     }
-    .tag.expert { background: #D4E6F1; color: #1A5276; font-weight: 600; }
+    .tag.expert {
+      font-size: 0.81rem;
+      font-weight: 500;
+      background: #E6F1FB;
+      color: #185FA5;
+      border: none;
+    }
 
     /* ── Awards ─────────────────────────────────────────────── */
     .award-list { display: flex; flex-direction: column; gap: 1rem; }
@@ -319,9 +327,11 @@
           <div class="tl-org">Agriculture and Agri-Food Canada (AAFC) — Earth Observations, Science &amp; Technology Branch</div>
           <div class="tl-loc">Ottawa, ON, Canada (Remote)</div>
           <ul>
-            <li>Engineered national-scale out-of-core data pipelines using xarray, dask, and Zarr to process multi-temporal 100m satellite imagery across Canada; automated spatial harmonization with rasterio, rioxarray, and GDAL (gdalbuildvrt, gdalwarp)</li>
-            <li>Implemented Bayesian probabilistic forecasting models (PyMC, ArviZ) and ML classifiers to project agricultural and urban land-cover dynamics across Canadian provinces to 2060 under multiple policy scenarios</li>
-            <li>Designed and ran 5 policy-driven land-use scenarios (Normal Development to Natural Capital) using the Dyna-CLUE simulation framework, producing quantitative projections of agricultural-to-urban conversion rates to 2075</li>
+            <li>Assembled a national LULC data cube at 100 m resolution from multi-source satellite time series and environmental covariates covering all of Canada south of 60°N; engineered out-of-core ingestion and harmonisation pipelines (xarray, dask, Zarr) to support continental-scale spatial analysis</li>
+            <li>Validated satellite-derived agricultural land estimates against Statistics Canada Census data across all 10 southern provinces; identified three distinct regimes of agricultural change — active conversion to urban land, gradual abandonment on marginal land, and administrative flux — with strong EO–Census agreement (Pearson r = 0.988)</li>
+            <li>Developed Bayesian provincial demand forecasting models (PyMC) for LULC trajectories, reporting posterior medians and 94% HDI to quantify projection uncertainty; translated posteriors into five policy-relevant land-use demand scenarios</li>
+            <li>Built pixel-level logistic regression suitability classifiers with geographic block cross-validation to prevent spatial leakage across disjoint test regions (ROC-AUC 0.957, Recall 0.81 on geographically held-out blocks)</li>
+            <li>Ran Dyna-CLUE with demand scenarios and pixel-level suitability surfaces to generate spatially explicit LULC projection maps across Canada</li>
           </ul>
         </div>
       </div>
@@ -336,12 +346,11 @@
           <div class="tl-org">Université du Québec à Trois-Rivières (UQTR) &amp; Centre d'Études Nordiques, Université Laval</div>
           <div class="tl-loc">Trois-Rivières, QC, Canada</div>
           <ul>
-            <li>Reformulated the Soil Freezing Characteristic Curve in permittivity–temperature space and fitted it across 87 sites using Bayesian hierarchical partial pooling (PyMC, NUTS), establishing that the zero-curtain transitional state persists 30–100+ days across Canadian ecozones</li>
-            <li>Developed a probabilistic, non-binary freeze–thaw retrieval integrating SMAP L-band and AMSR2 multi-frequency data with DBSCAN-based spatial cross-validation; validated against a three-product consensus (Cohen's Kappa 0.44–0.87 across five biomes)</li>
-            <li>Applied XGBoost with SHAP decomposition to attribute spatiotemporal patterns of frozen ground to environmental drivers; identified a structural regime shift in which sub-canopy snowpack supersedes atmospheric temperature under dense forest canopies</li>
-            <li>Linked the continuous Frozenness Index to AmeriFlux ecosystem respiration via piecewise regression, confirming liquid water content — not temperature — governs cold-season carbon flux once soils enter the transitional state</li>
-            <li>Designed the end-to-end data pipeline from automated satellite acquisition (earthaccess) through multi-sensor archive ingestion and out-of-core processing (xarray, dask, Zarr) to ML-ready feature datasets at continental scale</li>
-            <li>Funded by FRQNT Doctoral Research Scholarship ($75,000 CAD, 2023–2026) and UQTR Bourse Universalis Causa</li>
+            <li>Recast the Soil Freezing Characteristic Curve (SFCC) into permittivity–temperature space, eliminating moisture-specific calibration; applied Bayesian hierarchical partial pooling across 87 in situ stations (10 networks, boreal, prairie, and tundra) — mean R² = 0.95; demonstrated that the zero-curtain transitional state persists &gt;100 days in moisture-rich boreal sites, invisible to standard binary classifiers</li>
+            <li>Developed a probabilistic non-binary freeze–thaw retrieval fusing SMAP (L-band) and AMSR2 passive microwave observations into a continuous Frozenness Index and 3-class state map at 9 km resolution across the Northern Hemisphere (10-year record); built end-to-end ingestion and continental-scale processing pipelines via Dask and Zarr; validated against a three-product unanimous consensus — match rates 78.8–98.2%, Cohen's Kappa 0.44–0.87, PR AUC &gt;0.95 in three open biomes; applied DBSCAN clustering and StratifiedGroupKFold to eliminate spatial autocorrelation leakage</li>
+            <li>Applied XGBoost with SHAP attribution over a 9-year continental record; identified sub-canopy snowpack as the primary driver of frozen ground duration in forested biomes — a regime shift invisible to temperature-only models (R² = 0.894, MAE = 11.5 days); linked the Frozenness Index to AmeriFlux ecosystem respiration via piecewise regression, confirming the zero-curtain onset marks the metabolic shutdown tipping point for cold-season carbon flux</li>
+            <li>Conducted field campaigns across remote Canadian ecosystems; responsible for sensor installation, data logger servicing, and in-field quality control across boreal, subarctic, and prairie terrain</li>
+            <li>Funded by FRQNT Doctoral Research Scholarship ($75,000 CAD, 2023–2026), UQTR Bourse Universalis Causa ($2,100 CAD), and Canadian Space Agency Research Grant (~$30,000 CAD via supervisor)</li>
           </ul>
         </div>
       </div>
@@ -350,15 +359,15 @@
         <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-body">
           <div class="tl-header">
-            <span class="tl-role">Research Scientist — Contributing Author</span>
+            <span class="tl-role">Geospatial Data Analyst — Contributing Author</span>
             <span class="tl-dates">Apr 2024 – Oct 2024</span>
           </div>
           <div class="tl-org">Environment and Climate Change Canada (ECCC)</div>
           <div class="tl-loc">Toronto, ON, Canada (Remote)</div>
           <ul>
-            <li>Contributing author, <em>Canada's Changing Climate Report 2026</em>, Chapter 6: Cryosphere Changes (forthcoming federal policy document)</li>
-            <li>Processed four decades of satellite freeze–thaw records from HDF5 archives; stored pixel-level time series in a SQLAlchemy/MySQL database and performed parallelized Mann-Kendall trend analysis across Canada</li>
-            <li>Quantified a reduction of 1.7 days/decade in Canada's frozen ground days since 1979 and a 28% increase in unfrozen days across the Canadian Tundra; produced spatial trend maps for the federal report</li>
+            <li>Developed a multi-decade satellite data pipeline processing 40+ years of daily freeze–thaw observations into structured xarray spatial time series across Canada, underpinning the national-scale cryosphere trend assessment</li>
+            <li>Quantified a reduction of 1.7 days/decade in frozen ground days since 1979 and a 28% increase in unfrozen days across the Canadian Tundra (unfrozen season lengthened by ~27 days); produced publication-ready spatial trend maps for the federal climate assessment</li>
+            <li>Contributing author, <em>Canada's Changing Climate Report 2026</em>, Chapter 6: Cryosphere Changes (forthcoming)</li>
           </ul>
         </div>
       </div>
@@ -367,7 +376,7 @@
         <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-body">
           <div class="tl-header">
-            <span class="tl-role">Field Research Assistant</span>
+            <span class="tl-role">Field Research Technician</span>
             <span class="tl-dates">Aug 2022</span>
           </div>
           <div class="tl-org">NASA Jet Propulsion Laboratory (JPL) — SMAPVEX22-Boreal Campaign</div>
@@ -382,14 +391,33 @@
         <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
         <div class="tl-body">
           <div class="tl-header">
-            <span class="tl-role">Research Scientist</span>
+            <span class="tl-role">Environmental Remote Sensing Scientist</span>
             <span class="tl-dates">Oct 2019 – Jan 2021</span>
           </div>
           <div class="tl-org">Research Institute of Cultural Heritage &amp; Tourism (RICHT)</div>
           <div class="tl-loc">Tehran, Iran</div>
           <ul>
-            <li>Ran multi-year HYSPLIT forward trajectory simulations over 18 years (1995–2020) using Python/PySPLIT; processed 20 years of MODIS AOD and 36 years of Landsat imagery to track desiccation-driven dust emission from Lake Urmia</li>
-            <li>Established R = 0.86 between exposed lake bed area and regional aerosol optical depth; mapped altitude-dependent transport pathways documenting 30–60% increases in dust hours in downwind cities</li>
+            <li>Designed an automated Lagrangian simulation pipeline (Python/PySPLIT) executing forward trajectories over 18 years to map altitude-dependent transport of salt and dust sediments from Lake Urmia's desiccating playa</li>
+            <li>Engineered a multi-decadal satellite processing pipeline (MODIS AOD, Landsat) to track lake desiccation and identify active saline dust sources; established a strong correlation (R = 0.86) between exposed lake bed area and regional aerosol events</li>
+            <li>Quantified a 76% loss in lake surface area linked to agricultural expansion; demonstrated that low-altitude dust transport drove a 30–60% increase in dust hours for downwind cities</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-body">
+          <div class="tl-header">
+            <span class="tl-role">MSc Researcher</span>
+            <span class="tl-dates">Sep 2015 – Jul 2018</span>
+          </div>
+          <div class="tl-org">Iran University of Science and Technology (IUST)</div>
+          <div class="tl-loc">Tehran, Iran</div>
+          <ul>
+            <li>Investigated the air quality impact of wetland desiccation in the Middle East; combined multi-decadal Landsat time-series for wetland area monitoring with HYSPLIT forward trajectory modelling — identified four primary dust transport pathways from the Mesopotamian Marshes, with regional implications for air quality from the Persian Gulf to Central Asia</li>
+            <li>Monitored national SO₂ column concentrations over Iran (2005–2016) using Aura/OMI satellite retrievals; characterised seasonal transport corridors from an industrial point source via HYSPLIT forward trajectories</li>
+            <li>Contributed geospatial analysis to a collaborative environmental study on heavy metal (Hg) distribution in Musa Estuary; produced spatial contamination maps using ArcGIS and geostatistical interpolation</li>
+            <li>Produced 5 peer-reviewed publications (2019–2025); graduated as top-ranked MSc student (GPA 18.33/20, national scholarship)</li>
           </ul>
         </div>
       </div>
@@ -523,80 +551,45 @@
     <div class="skills-grid">
 
       <div class="skill-card">
-        <h3>Programming &amp; Data Engineering</h3>
+        <h3>Engineering &amp; Data Stack</h3>
         <div class="skill-tags">
           <span class="tag expert">Python</span>
           <span class="tag expert">xarray · dask</span>
           <span class="tag expert">Zarr</span>
-          <span class="tag">numpy · pandas</span>
-          <span class="tag">scikit-learn · XGBoost</span>
-          <span class="tag">PyMC · ArviZ</span>
-          <span class="tag">rasterio · rioxarray · geopandas</span>
-          <span class="tag">matplotlib · cartopy</span>
           <span class="tag expert">GDAL / OGR</span>
-          <span class="tag">ArcPy</span>
-          <span class="tag">Bash</span>
-          <span class="tag">MATLAB</span>
-          <span class="tag">Git / GitHub</span>
-          <span class="tag">MySQL</span>
+          <span class="tag">rasterio · geopandas</span>
+          <span class="tag">scikit-learn · PyMC</span>
+          <span class="tag">Scientific data formats</span>
+          <span class="tag">Bash · Git</span>
         </div>
       </div>
 
       <div class="skill-card">
         <h3>Machine Learning &amp; Statistics</h3>
         <div class="skill-tags">
-          <span class="tag">Logistic regression</span>
-          <span class="tag">Random forests · SVM</span>
-          <span class="tag">XGBoost · SHAP</span>
-          <span class="tag expert">Bayesian hierarchical models</span>
-          <span class="tag">Monte Carlo uncertainty propagation</span>
-          <span class="tag">Spatial cross-validation</span>
+          <span class="tag expert">Bayesian hierarchical modelling</span>
+          <span class="tag expert">Spatial cross-validation</span>
+          <span class="tag">Logistic regression · SVM</span>
+          <span class="tag">Random forests · XGBoost</span>
           <span class="tag">Imbalanced classification</span>
-          <span class="tag">Mann-Kendall · time-series trend</span>
+          <span class="tag">Monte Carlo uncertainty</span>
+          <span class="tag">Time-series trend detection</span>
+          <span class="tag">Feature importance (SHAP)</span>
         </div>
       </div>
 
-      <div class="skill-card">
-        <h3>Earth Observation</h3>
+      <div class="skill-card skill-card--full">
+        <h3>Remote Sensing, Earth Observation &amp; Spatial Analysis</h3>
         <div class="skill-tags">
           <span class="tag expert">Passive microwave remote sensing</span>
-          <span class="tag">Optical satellite time-series</span>
-          <span class="tag">Atmospheric remote sensing</span>
-          <span class="tag">Climate reanalysis</span>
+          <span class="tag expert">Satellite retrieval algorithm development</span>
+          <span class="tag">Optical satellite time-series analysis</span>
+          <span class="tag">Atmospheric transport modelling</span>
+          <span class="tag">Climate reanalysis integration</span>
           <span class="tag">Multi-sensor data fusion</span>
-          <span class="tag">Retrieval algorithm development</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <h3>Atmospheric &amp; Physical Modelling</h3>
-        <div class="skill-tags">
-          <span class="tag expert">HYSPLIT · PySPLIT</span>
-          <span class="tag">Lagrangian trajectory analysis</span>
-          <span class="tag">Dust transport modelling</span>
-          <span class="tag">Freeze–thaw algorithm development</span>
-          <span class="tag">SFCC permittivity–temperature modelling</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <h3>GIS &amp; Spatial Analysis</h3>
-        <div class="skill-tags">
-          <span class="tag">QGIS</span>
-          <span class="tag">ArcGIS / ArcMap</span>
-          <span class="tag">PostGIS (learning)</span>
-        </div>
-      </div>
-
-      <div class="skill-card">
-        <h3>Data Formats &amp; Storage</h3>
-        <div class="skill-tags">
-          <span class="tag expert">NetCDF · HDF5</span>
-          <span class="tag expert">Zarr · Parquet</span>
-          <span class="tag">GeoTIFF · GRIB</span>
-          <span class="tag">Shapefile · GeoJSON</span>
-          <span class="tag">Batch ETL pipelines</span>
-          <span class="tag">AWS (learning)</span>
+          <span class="tag">Satellite &amp; field data validation</span>
+          <span class="tag">Geostatistical analysis</span>
+          <span class="tag">QGIS · ArcGIS</span>
         </div>
       </div>
 
@@ -692,11 +685,63 @@
   </div>
 </section>
 
+<!-- ── Certificates ───────────────────────────────────────── -->
+<section id="certificates" class="bg-gray">
+  <div class="container">
+    <h2 class="section-title">Certificates &amp; Professional Development</h2>
+    <div class="award-list">
+
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div class="award-body">
+          <div class="award-title">AI for Earth Program</div>
+          <div class="award-org">Amii (Alberta Machine Intelligence Institute) &nbsp;·&nbsp; 2026</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div class="award-body">
+          <div class="award-title">Advanced Learning Algorithms</div>
+          <div class="award-org">DeepLearning.AI / Coursera &nbsp;·&nbsp; 2025</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div class="award-body">
+          <div class="award-title">Supervised Machine Learning: Regression and Classification</div>
+          <div class="award-org">DeepLearning.AI / Coursera &nbsp;·&nbsp; 2025</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div class="award-body">
+          <div class="award-title">Google Data Analytics Certificate (Foundations, Python, Data Exploration)</div>
+          <div class="award-org">Google / Coursera &nbsp;·&nbsp; 2022–2025</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon">🎓</div>
+        <div class="award-body">
+          <div class="award-title">Advanced Python Programming</div>
+          <div class="award-org">Maktabkhooneh &nbsp;·&nbsp; 2020</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ── Download CV ────────────────────────────────────────── -->
 <div class="cta-block" id="contact">
   <div class="container">
-    <p>Want the full details? Download the CV or get in touch.</p>
+    <p>Want the full details? Download the CV, grab a tailored resume, or get in touch.</p>
     <a class="btn-cv" href="cv_hesam_salmabadi.pdf" target="_blank">Download CV (PDF)</a>
+    &nbsp;&nbsp;
+    <a class="btn-cv" href="resumes/resume_innovate_geospatial_ds.pdf" target="_blank" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.4);">Resume — Geospatial Data Scientist</a>
     &nbsp;&nbsp;
     <a class="btn-cv" style="background:transparent;color:#fff;border:1px solid rgba(255,255,255,0.4);" href="mailto:hesam.salmabadi@gmail.com">Get in Touch</a>
   </div>
