@@ -1,6 +1,7 @@
 #!/bin/bash
-# Run from this folder: cd resumes && bash build.sh
-# Requires xelatex (install via MacTeX or TeX Live)
+# Usage: cd resumes && bash build.sh <filename_without_extension>
+# Example: bash build.sh resume_innovate_geospatial_ds
+# Requires xelatex — install via MacTeX (https://tug.org/mactex/)
 
 FILE=$1
 
